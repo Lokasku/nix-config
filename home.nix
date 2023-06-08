@@ -1,50 +1,59 @@
-{ pkgs, lib, config, options, ... }:
+{ pkgs, lib, ... }:
+
+with lib;
 {
-  home.username = "luke";
-  home.homeDirectory = "/home/luke";
-  home.stateVersion = "22.11";
+  nixpkgs.config.allowUnfree = true;
 
-  programs.home-manager.enable = true;
-
-  home.packages = with pkgs; [
-    alacritty
-    firefox
-    git
-    fish
-    dmenu
-    neofetch
-    starship
-    feh
-    imagemagick
-
-    ghc
-    cabal-install
-    haskellPackages.xmobar
-
-    cargo
-
-    flameshot
+  imports = [
+    ./config
   ];
 
-  programs.alacritty.enable = true;
-  programs.firefox.enable = true;
-  programs.git = {
-    aliases = {
-      c = "commit -m";
-      a = "add";
-      ps = "push";
-      pl = "pull";
-      co = "checkout";
-      cl = "clone";
-    };
-    enable = true;
-    userEmail = "lukasku@proton.me";
-    userName = "Lokasku";
+  home = {
+    username = "luke";
+    homeDirectory = "/home/luke";
+    stateVersion = "22.11";
+    packages = with pkgs; [
+      # Haskell
+      ghc cabal-install
+
+      # Rust
+      cargo
+
+      # Misc
+      dmenu
+      neofetch
+      imagemagick
+    ];
   };
-  programs.vim.enable = true;
-  programs.fish.enable = true;
-  programs.starship.enable = true;
-  programs.feh.enable = true;  
+
+  programs = {
+    home-manager.enable = true;
+    vim.enable = true;
+    alacritty.enable = true;
+    firefox.enable = true;
+    git = {
+      enable = true;
+      aliases = {
+        c = "commit -m";
+        a = "add";
+        ps = "push";
+        pl = "pull";
+        co = "checkout";
+        cl = "clone";
+      };
+      userEmail = "lukasku@proton.me";
+      userName = "Lokasku";
+    };
+    fish.enable = true;
+    starship.enable = true;
+    feh.enable = true;
+    neovim.enable = true;
+  };
+
+  services = {
+    flameshot.enable = true;
+  };
+
   gtk = {
     enable = true;
     theme = {
