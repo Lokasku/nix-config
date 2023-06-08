@@ -28,7 +28,6 @@ with lib;
 
   programs = {
     home-manager.enable = true;
-    vim.enable = true;
     alacritty.enable = true;
     firefox.enable = true;
     git = {
