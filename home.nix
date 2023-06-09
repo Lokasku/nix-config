@@ -30,19 +30,7 @@ with lib;
     home-manager.enable = true;
     alacritty.enable = true;
     firefox.enable = true;
-    git = {
-      enable = true;
-      aliases = {
-        c = "commit -m";
-        a = "add";
-        ps = "push";
-        pl = "pull";
-        co = "checkout";
-        cl = "clone";
-      };
-      userEmail = "lukasku@proton.me";
-      userName = "Lokasku";
-    };
+    git.enable = true;
     fish.enable = true;
     starship.enable = true;
     feh.enable = true;
