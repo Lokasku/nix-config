@@ -1,14 +1,14 @@
-{ pkgs, lib, buildVimPluginFrom2Nix, buildNeovimPluginFrom2Nix, vimUtils, fetchFromGitHub, ... }:
+{ pkgs, lib,  ... }:
 
 let
-  ghtheme = pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "ghtheme";
+  photon = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "photon";
     version = "";
     src = pkgs.fetchFromGitHub {
-      owner = "projekt0n";
-      repo = "github-nvim-theme";
-      rev = "62b7b54a90c70c20cd1641f9facfced46bdd3561";
-      sha256 = "sha256-1eZvTqdRvol85xgoh9anMjj9ovb34F391HtYl71+IDA=";
+      owner = "axvr";
+      repo = "photon.vim";
+      rev = "32b42c8a12bf9588259b76f3df6807960e0d7386";
+      sha256 = "sha256-kM7WP03uE20yr0nCusB3ncHzgtEYxqNzoNoQGen9p+o=";
     };
   };
 in {
@@ -18,7 +18,7 @@ in {
       haskell-vim
       vim-markdown
       ale
-      ghtheme
+      photon
     ];
     coc = {
       enable = true;
@@ -54,12 +54,7 @@ in {
     defaultEditor = true;
     withNodeJs = true;
     extraLuaConfig = ''
-      -- require('github-theme').setup({})
-      vim.cmd('colorscheme github_dark_high_contrast')
-      -- vim.cmd('colorscheme github_dark_dimmed')
-      -- vim.cmd('colorscheme github_dark_colorbind')
-      -- vim.cmd('colorscheme github_dark_tritanopia')
-      -- vim.cmd('colorscheme github_light_tritanopia')
+      vim.cmd('colorscheme photon')
 
       vim.o.shiftwidth = 4
       vim.o.tabstop = 4
