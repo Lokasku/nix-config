@@ -2,6 +2,8 @@
 
 {
   imports = [
+    ./xmonad
+
     ./neovim.nix
     ./alacritty.nix
     ./git.nix

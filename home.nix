@@ -14,16 +14,20 @@ with lib;
     stateVersion = "22.11";
     packages = with pkgs; [
       # Haskell
-      ghc cabal-install
-
+      ghc cabal-install haskellPackages.xmonad
       # Rust
       cargo
 
       # Misc
+      (pkgs.callPackage ./config/pragmata.nix {})
       dmenu
       neofetch
       imagemagick
     ];
+  };
+
+  xsession = {
+    enable = true;
   };
 
   programs = {
