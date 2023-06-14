@@ -22,11 +22,11 @@ with lib;
         size = 6.0;
         offset = {
           x = 0;
-          y = 1;
+          y = 2;
         };
         glyph_offset = {
           x = 0;
-          y = 1;
+          y = 2;
         };
       };
       colors = {

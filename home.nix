@@ -14,7 +14,7 @@ with lib;
     stateVersion = "22.11";
     packages = with pkgs; [
       # Haskell
-      ghc cabal-install haskellPackages.xmonad
+      ghc cabal-install haskellPackages.xmonad haskellPackages.xmobar
       # Rust
       cargo
 
@@ -23,6 +23,7 @@ with lib;
       dmenu
       neofetch
       imagemagick
+      brightnessctl # light controler
     ];
   };
 

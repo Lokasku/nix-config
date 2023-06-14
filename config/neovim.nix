@@ -15,12 +15,9 @@ in {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       rust-tools-nvim
-      haskell-vim
-      vim-markdown
-      ale
       photon
     ];
-    coc = {
+    /* coc = {
       enable = true;
       # Haskell
       settings.languageserver.haskell = {
@@ -50,7 +47,7 @@ in {
     extraPackages = with pkgs; [
       nodejs
       rust-analyzer 
-    ];
+    ]; */
     defaultEditor = true;
     withNodeJs = true;
     extraLuaConfig = ''

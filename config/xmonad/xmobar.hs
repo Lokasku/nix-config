@@ -1,5 +1,5 @@
 Config { 
-     font        = "xft:Pragmata Pro"
+     font        = "xft:Pragmata Pro:size=10"
    , bgColor     = "#282828"
    , fgColor     = "#f4f4f4"
    , position    = Top
