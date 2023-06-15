@@ -1,11 +1,12 @@
 import XMonad
 
 import XMonad.Util.EZConfig
-import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Run (spawnPipe, hPutStrLn)
 
 import XMonad.Hooks.ManageDocks (avoidStruts, docks)
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.WallpaperSetter
+import XMonad.Hooks.DynamicLog
 
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing (Border (..), spacingRaw)
@@ -22,8 +23,9 @@ import XMonad.Actions.CycleWS
 import Data.Bool (bool)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
+import System.Process (spawnCommand)
 
-myLayoutHook = let myGaps = 7
+myLayoutHook = let myGaps = 5
                in mkToggle (single FULL)
                     $ avoidStruts
                     $ spacingRaw False (Border 0 myGaps 0 myGaps) True (Border myGaps 0 myGaps 0) True
@@ -107,14 +109,14 @@ isFloating :: Window -> X Bool
 isFloating win = gets (Map.member win . W.floating . windowset)
 
 main = do
-    h <- spawnPipe "xmobar ./xmobar.hs &"
+    h <- spawnPipe "xmobar ~/.config/nixpkgs/config/xmonad/xmobar.hs"
     xmonad $ ewmhFullscreen $ ewmh $ docks $ def
         { borderWidth        = 2
         , terminal           = myTerminal
         , normalBorderColor  = "#585858"
         , focusedBorderColor = "#ae77be"
         , layoutHook         = myLayoutHook
-        , logHook            = myLogHook
+        , logHook            = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
         , keys               = \ c -> mkKeymap c (myKeys c)
         , workspaces         = snd <$> myWorkspaces
         }
