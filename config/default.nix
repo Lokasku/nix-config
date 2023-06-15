@@ -9,5 +9,7 @@
     ./git.nix
     ./fish.nix
     ./starship.nix
+    ./redshift.nix
+    ./picom.nix
   ];
 }

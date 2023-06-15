@@ -51,7 +51,7 @@ with lib;
 
   services = {
     redshift.enable = true;
-    redshift.provider = "geoclue2";
+    picom.enable = true;
     flameshot.enable = true;
   };
 

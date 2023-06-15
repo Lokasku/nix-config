@@ -23,7 +23,7 @@ import XMonad.Actions.CycleWS
 import Data.Bool (bool)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as Map
-import System.Process (spawnCommand)
+import System.Environment
 
 myLayoutHook = let myGaps = 5
                in mkToggle (single FULL)
@@ -108,6 +108,11 @@ myKeys c =
 isFloating :: Window -> X Bool
 isFloating win = gets (Map.member win . W.floating . windowset)
 
+myWallpaper :: String -> X ()
+myWallpaper w = do
+    homeDir <- io $ getEnv "HOME"
+    spawn $ "feh --bg-fill " ++ homeDir ++ "/" ++ w
+
 main = do
     h <- spawnPipe "xmobar ~/.config/nixpkgs/config/xmonad/xmobar.hs"
     xmonad $ ewmhFullscreen $ ewmh $ docks $ def
@@ -117,6 +122,7 @@ main = do
         , focusedBorderColor = "#ae77be"
         , layoutHook         = myLayoutHook
         , logHook            = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
+        , startupHook        = myWallpaper ".wallpapers/flake-wallpaper.jpg"
         , keys               = \ c -> mkKeymap c (myKeys c)
         , workspaces         = snd <$> myWorkspaces
         }

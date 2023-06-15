@@ -16,41 +16,67 @@ in {
     plugins = with pkgs.vimPlugins; [
       rust-tools-nvim
       photon
-    ];
-    /* coc = {
-      enable = true;
-      # Haskell
-      settings.languageserver.haskell = {
-        command = "haskell-language-server-wrapper";
-        args = [ "--lsp" ];
-        rootPaterns= [
-          "*.cabal"
-          "cabal.project"
-          "hie.yaml"
-          "stack.yaml"
-          "package.yaml"
-        ];
-        filetypes = [ "haskell" "lhaskell" ];
-      };
 
-      # Rust
-      settings.languageserver.rust = {
-        command = "rust-analyser";
-        args = [ ];
-        rootPaterns = [
-          "Cargo.lock"
-          "Cargo.toml"
-        ];
-        filetypes = [ "rust" ];
-      };
-    };
+      # LSP (CMP)
+      nvim-cmp
+      cmp-nvim-lsp
+      nvim-lspconfig
+      plenary-nvim
+      coc-clangd
+      vim-vsnip
+    ];
     extraPackages = with pkgs; [
       nodejs
-      rust-analyzer 
-    ]; */
+      rust-analyzer  
+      clojure-lsp
+      haskell-language-server
+    ];
     defaultEditor = true;
     withNodeJs = true;
     extraLuaConfig = ''
+     local cmp = require('cmp')
+     cmp.setup({
+       snippet = {
+         expand = function(args)
+           vim.fn["vsnip#anonymous"](args.body)
+         end,
+       },
+       mapping = {
+         ['<C-Space>'] = cmp.mapping.complete(),
+         ['<CR>'] = cmp.mapping.confirm({
+           behavior = cmp.ConfirmBehavior.Replace,
+           select = true,
+         }),
+       },
+       sources = {
+         { name = 'nvim_lsp' },
+         { name = 'vsnip' },
+        },
+      })
+
+      local lspconfig = require('lspconfig')
+
+      -- Rust
+      lspconfig.rust_analyzer.setup({
+        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      })
+
+      -- Haskell
+      lspconfig.hls.setup({
+        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      })
+
+      -- C
+      lspconfig.clangd.setup({
+        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      })
+      
+      -- Clojure
+      lspconfig.clojure_lsp.setup({
+        capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      })
+
+
       vim.cmd('colorscheme photon')
 
       vim.o.shiftwidth = 4
