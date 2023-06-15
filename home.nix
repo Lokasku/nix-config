@@ -14,7 +14,12 @@ with lib;
     stateVersion = "22.11";
     packages = with pkgs; [
       # Haskell
-      ghc cabal-install haskellPackages.xmonad haskellPackages.xmobar
+      ghc cabal-install
+
+        # Haskell Packages
+        haskellPackages.xmonad
+        haskellPackages.xmobar
+
       # Rust
       cargo
 
@@ -24,6 +29,8 @@ with lib;
       neofetch
       imagemagick
       brightnessctl # light controler
+      discord
+      spotify
     ];
   };
 
@@ -43,6 +50,8 @@ with lib;
   };
 
   services = {
+    redshift.enable = true;
+    redshift.provider = "geoclue2";
     flameshot.enable = true;
   };
 

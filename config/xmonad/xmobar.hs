@@ -1,5 +1,5 @@
 Config { 
-     font        = "xft:Pragmata Pro:size=10"
+     font        = "xft:Pragmata Pro-10"
    , bgColor     = "#282828"
    , fgColor     = "#f4f4f4"
    , position    = Top
@@ -8,7 +8,7 @@ Config {
 
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %date% "
+   , template = "%battery% | %multicpu% | %coretemp% | %memory% | %dynnetwork% }{ %date% "
 
    , lowerOnStart =     True
    , hideOnStart =      False

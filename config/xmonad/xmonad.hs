@@ -17,6 +17,7 @@ import qualified XMonad.StackSet as W
 
 import XMonad.Actions.Submap (submap)
 import XMonad.Actions.FloatKeys (keysResizeWindow)
+import XMonad.Actions.CycleWS
 
 import Data.Bool (bool)
 import Data.Map.Strict (Map)
@@ -43,17 +44,13 @@ myWorkspaces =
     ]
 
 myWorkspaceKeymap =
-    [ ("M-" ++ m ++ k, windows $ f i)
-      | (i, k) <- zip workspaceNames mainKeys,
-        (f, m) <- [ (W.greedyView, ""), (W.shift, "S-"), (shiftFocus, "M1-") ]
-    ]
+    [ ("M-" ++ k, windows $ W.greedyView i) | (i, k) <- zip workspaceNames mainKeys ]
     where
       (mainKeys, workspaceNames) = unzip myWorkspaces
-      shiftFocus i = W.greedyView i . W.shift i
 
 myLogHook = wallpaperSetter defWallpaperConf {
                                 wallpapers = defWPNamesJpg (map snd myWorkspaces)
-                                    <> WallpaperList [("dev", WallpaperFix "~/.wallpapers/nixos-wallpaper-light.jpg")]
+                                    <> WallpaperList [("dev", WallpaperFix "~/.wallpapers/nixos-wallpaper-dark.jpg")]
                             }
 myTerminal = "alacritty"
 
@@ -63,7 +60,17 @@ myKeys c =
     -- M-
       ("M-<Space>", spawn (terminal c))
     , ("M-p", spawn "dmenu_run -fn 'Pragmata Pro:size=10' -nb '#232323' -nf '#C5C5C5' -sb '#2F2F2F' -sf '#FFFFFF' -p 'find:'")
-    , ("M-k", withFocused killWindow)
+    , ("M-k", kill)
+    , ("M-b", moveUp)
+    , ("M-n", moveDown)
+
+    -- S-
+    , ("S-<U>", spawn "redshift -P -O 3500")
+    , ("S-<D>", spawn "redshift -P -O 6500")
+
+    -- M-S-
+    , ("M-S-<R>", nextWS)
+    , ("M-S-<L>", prevWS)
     
     -- Resizing
     , ("M-<L>", withFocused resizeLeft) 
@@ -93,15 +100,18 @@ myKeys c =
       resizeTop win    = isFloating win >>= bool (sendMessage MirrorExpand) (keysResizeWindow (0, -5) (0, 0) win)
       resizeBottom win = isFloating win >>= bool (sendMessage MirrorShrink) (keysResizeWindow (0, 5) (0, 0) win)
 
+      moveUp   = windows $ W.focusUp
+      moveDown = windows $ W.focusDown
+
 isFloating :: Window -> X Bool
 isFloating win = gets (Map.member win . W.floating . windowset)
 
 main = do
-    h <- spawnPipe "xmobar ./xmobar.hs"
+    h <- spawnPipe "xmobar ./xmobar.hs &"
     xmonad $ ewmhFullscreen $ ewmh $ docks $ def
         { borderWidth        = 2
         , terminal           = myTerminal
-        , normalBorderColor  = "#b3b3b3"
+        , normalBorderColor  = "#585858"
         , focusedBorderColor = "#ae77be"
         , layoutHook         = myLayoutHook
         , logHook            = myLogHook
