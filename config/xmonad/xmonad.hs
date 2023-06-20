@@ -62,6 +62,7 @@ myKeys c =
     -- M-
       ("M-<Space>", spawn (terminal c))
     , ("M-p", spawn "dmenu_run -fn 'Pragmata Pro:size=10' -nb '#232323' -nf '#C5C5C5' -sb '#2F2F2F' -sf '#FFFFFF' -p 'find:'")
+    , ("M-f", spawn "firefox")
     , ("M-k", kill)
     , ("M-b", moveUp)
     , ("M-n", moveDown)
@@ -122,7 +123,7 @@ main = do
         , focusedBorderColor = "#ae77be"
         , layoutHook         = myLayoutHook
         , logHook            = dynamicLogWithPP $ def { ppOutput = hPutStrLn h }
-        , startupHook        = myWallpaper ".wallpapers/flake-wallpaper.jpg"
+        , startupHook        = myWallpaper ".config/nixpkgs/wallpapers/flake-wallpaper.jpg"
         , keys               = \ c -> mkKeymap c (myKeys c)
         , workspaces         = snd <$> myWorkspaces
         }

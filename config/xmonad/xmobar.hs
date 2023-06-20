@@ -8,7 +8,7 @@ Config {
 
    , sepChar =  "%"   -- delineator between plugin names and straight text
    , alignSep = "}{"  -- separator between left-right alignment
-   , template = " %battery% ❭ %multicpu% ❭ %coretemp% ❭ %memory% ❭ %dynnetwork% }{ %date% "
+   , template = " %battery% :: %multicpu% :: %coretemp% :: %memory% :: %dynnetwork% }{ %date% "
 
    , lowerOnStart =     True
    , hideOnStart =      False
@@ -19,7 +19,7 @@ Config {
 
    , commands = 
         -- network activity monitor (dynamic interface resolution)
-        [ Run DynNetwork     [ "--template" , "<dev>: <tx>kB/s / <rx>kB/s"
+        [ Run DynNetwork     [ "--template" , "NETW: <tx>kB/s / <rx>kB/s"
                              , "--Low"      , "1000"
                              , "--High"     , "5000"
                              , "--low"      , "#ffc9c9"
@@ -56,19 +56,20 @@ Config {
 
         -- battery monitor
         , Run Battery        [ "--template" , "BAT: <acstatus>"
-                             , "--Low"      , "10"
+                             , "--Low"      , "20"
                              , "--High"     , "80"
-                             , "--low"      , "#ffc9c9"
-                             , "--normal"   , "#ffdada"
-                             , "--high"     , "#ffefef"
+                             , "--low"      , "#ff453b"
+                             , "--normal"   , "#ff9f0a"
+                             , "--high"     , "#5bf470"
+
 
                              , "--" -- battery specific options
                                        -- discharging status
-                                       , "-o"	, "<left>% <fc=#76f0a5>(<timeleft>)</fc>"
+                                       , "-o"	, "N:<left>% <timeleft> h"
                                        -- AC "on" status
-                                       , "-O"	, "<fc=#dAA520>Charging</fc> (<left>% ~ <timeleft>)"
+                                       , "-O"	, "C:<left>% <timeleft> h"
                                        -- charged status
-                                       , "-i"	, "<fc=#006000>Charged</fc> (<left>% ~ <timeleft>)"
+                                       , "-i"	, "F:<left>% <timeleft> h"
                              ] 50
 
         -- time and date indicator 

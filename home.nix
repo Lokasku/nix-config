@@ -31,6 +31,7 @@ with lib;
       brightnessctl # light controler
       discord
       spotify
+      xfce.thunar
     ];
   };
 
