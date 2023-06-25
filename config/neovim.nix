@@ -11,11 +11,34 @@ let
       sha256 = "sha256-kM7WP03uE20yr0nCusB3ncHzgtEYxqNzoNoQGen9p+o=";
     };
   };
+  komau = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "komau";
+    version = "";
+    src = pkgs.fetchFromGitHub {
+      owner = "ntk148v";
+      repo = "komau.vim";
+      rev = "759adf8a6b3daa57c5f9229e241968e401e4ac4c";
+      sha256 = "sha256-veKyXZ4wh+02tOyKRFP5l137wQoTNXcJqPhCPS3E5jA=";
+    };
+  };
+  quantum = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    pname = "quantum";
+    version = "";
+    src = pkgs.fetchFromGitHub {
+      owner = "kjssad";
+      repo = "quantum.vim";
+      rev = "32c3eee862eb3d607ec74d7e3e776079d702f8a9";
+      sha256 = "sha256-27zPQB1m3J7Ue8xMIIRSautAi3+CvKVrideaAb2DC+M=";
+    };
+  };
+
 in {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       rust-tools-nvim
       photon
+      # komau
+      # quantum
 
       # LSP (CMP)
       nvim-cmp
@@ -78,6 +101,8 @@ in {
 
 
       vim.cmd('colorscheme photon')
+      -- vim.cmd('colorscheme komau')
+      -- vim.cmd('colorscheme quantum')
 
       vim.o.shiftwidth = 4
       vim.o.tabstop = 4
