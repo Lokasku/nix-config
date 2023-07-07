@@ -54,7 +54,6 @@ in {
       clojure-lsp
       haskell-language-server
     ];
-    defaultEditor = true;
     withNodeJs = true;
     extraLuaConfig = ''
      local cmp = require('cmp')

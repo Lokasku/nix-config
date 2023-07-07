@@ -1,0 +1,15 @@
+# --- kak-lsp
+eval %sh{kak-lsp --kakoune -s $kak_session}
+
+hook global WinSetOption filetype=(nix|haskell) %{
+    lsp-enable-window
+}
+
+hook global WinSetOption filetype=rust %{
+    lsp-enable-window
+    hook window BufWritePre .* lsp-formatting-sync
+    hook  window -group rust-inlay-hints BufWritePost .* rust-analyzer-inlay-hints
+    hook -once -always window WinSetOption filetype=.* %{
+      remove-hooks window rust-inlay-hints
+    }
+}

@@ -19,7 +19,7 @@ with lib;
         bold.style = "Bold";
         italic.style = "Italic";
         bold_italic.style = "Bold Italic";
-        size = 6.0;
+        size = 7.0;
         offset = {
           x = 0;
           y = 2;

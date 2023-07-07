@@ -33,6 +33,7 @@ with lib;
       spotify
       xfce.thunar
     ];
+    sessionVariables.EDITOR = "kak";
   };
 
   xsession = {
@@ -40,6 +41,9 @@ with lib;
   };
 
   programs = {
+    kakoune.enable = true;
+    mpv.enable = true;
+    yt-dlp.enable = true;
     home-manager.enable = true;
     alacritty.enable = true;
     firefox.enable = true;
