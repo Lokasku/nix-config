@@ -16,6 +16,26 @@ let
     destination = "/share/kak/autoload/${name}";
     text = builtins.readFile ./kakrc;
   };
+  kak-rainbow = pkgs.kakouneUtils.buildKakounePluginFrom2Nix rec {
+    pname = "kak-rainbow";
+    version = "1.0.0";
+    src = pkgs.fetchFromGitHub {
+      owner = "Bodhizafa";
+      repo = "kak-rainbow";
+      rev = "9c3d0aa62514134ee5cb86e80855d9712c4e8c4b";
+      sha256 = "sha256-ryYq4A89wVUsxgvt4YqBPXsTFMDrMJM6BDBEHrWHD1c=";
+    };
+
+    postInstall = ''
+      mkdir -p $out/lib
+      mv $out/share/kak/autoload/plugins/${pname}/rainbow.kak $out/lib
+      cat >$out/share/kak/autoload/plugins/${pname}/rainbow.kak <<EOF
+        provide-module rainbow %{
+          source $out/lib/rainbow.kak
+        }
+      EOF
+    '';
+  };
 in
   with lib;
   {
@@ -23,14 +43,12 @@ in
       haskell-language-server # Haskell LSP
       rust-analyzer           # Rust    LSP
       rnix-lsp                # Nix     LSP
-
-      guile                   # Needed by kakoune-rainbow
     ];
     programs.kakoune = {
       plugins = with pkgs.kakounePlugins; [
         kak-lsp
         fzf-kak
-        kakoune-rainbow
+        kak-rainbow
         kakship
 
         kakrc
