@@ -33,6 +33,7 @@ with lib;
       spotify
       xfce.thunar
     ];
+    
     sessionVariables.EDITOR = "kak";
   };
 

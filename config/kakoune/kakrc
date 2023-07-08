@@ -22,10 +22,12 @@ hook global ModuleLoaded rainbow %{
   }
 }
 
+# --- kakship
+hook global ModuleLoaded kakship %{
+    kakship-enable
+}
+
 
 # --- Map
 map global normal <c-f> ':fzf-mode<ret>v<ret>'
 map global normal <c-space> ':require-module rainbow<ret>:rainbow-enable-window<ret>'
-
-
-require-module rainbow
