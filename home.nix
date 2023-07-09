@@ -42,6 +42,7 @@ with lib;
   };
 
   programs = {
+    broot.enable = true;
     kakoune.enable = true;
     mpv.enable = true;
     yt-dlp.enable = true;

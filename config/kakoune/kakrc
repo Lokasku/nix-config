@@ -1,3 +1,6 @@
+# --- kks
+eval %sh{ kks init }
+
 # --- kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
@@ -22,8 +25,17 @@ hook global ModuleLoaded rainbow %{
   }
 }
 
+# --- alacritty.kak
+hook global ModuleLoaded x11 %{
+    alias global terminal alacritty-terminal
+    alias global popup alacritty-terminal-popup
+}
+
 # kakship-enable
 
 # --- Map
 map global normal <c-f> ':fzf-mode<ret>v<ret>'
 map global normal <c-space> ':require-module rainbow<ret>:rainbow-enable-window<ret>'
+
+
+require-module alacritty

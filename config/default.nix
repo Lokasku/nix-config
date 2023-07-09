@@ -13,5 +13,6 @@
     ./picom.nix
     ./mpv.nix
     ./kakoune/kakoune.nix
+    ./broot.nix
   ];
 }

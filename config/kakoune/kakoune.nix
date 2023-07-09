@@ -1,16 +1,6 @@
 { lib, pkgs, ... }:
 
 let
-  /* kakship = pkgs.kakouneUtils.buildKakounePluginFrom2Nix rec {
-    pname = "kakship";
-    version = "";
-    src = pkgs.fetchFromGitHub {
-      owner = "eburghar";
-      repo = "kakship";
-      rev = "c58d592051d65d004129185c5f0bb48c11a63801";
-      sha256 = "sha256-JYw1HyYC7G9/gGa8ne8smWx02z79v7XiVmIDC9BXD48=";
-    };
-  }; */
   kakship = pkgs.rustPlatform.buildRustPackage rec {
     pname = "kakship";
     version = "0.2.8";
@@ -64,6 +54,26 @@ let
       EOF
     '';
   };
+  kks = pkgs.kakouneUtils.buildKakounePluginFrom2Nix rec {
+    pname = "kks";
+    version = "8113ea3";
+    src = pkgs.fetchFromGitHub {
+      owner = "kkga";
+      repo = "kks";
+      rev = "8113ea3bd718dec88b812faa1a41bacba0110fd7";
+      sha256 = "sha256-/0ocgWArELGQkOZqbYRljPnzM/zQ9HCZq7gqhMD0Mq4=";
+    };
+  };
+  kak-alacritty = pkgs.kakouneUtils.buildKakounePluginFrom2Nix rec {
+    pname = "alacritty.kak";
+    version = "30909bd";
+    src = pkgs.fetchFromGitHub {
+      owner = "Superty";
+      repo = "alacritty.kak";
+      rev = "30909bd89fa3804b31eb3cc91057e38af595a846";
+      sha256 = "sha256-M3GN+0mhMIl7mgkqJ0j8TzyfI7ILFjdDUf+65uX094E=";
+    };
+  };
 in
   with lib;
   {
@@ -80,6 +90,8 @@ in
         fzf-kak
         kak-rainbow
         kakship
+        kks
+        kak-alacritty
 
         kakrc
       ];
