@@ -3,7 +3,6 @@
 format = """
 \$directory
 \${custom.separator}
-koukououkououkoukoukoukoukoujoukou
 """
 
 [directory]
@@ -16,6 +15,6 @@ truncate_symbol = "../"
 disabled = false
 
 [custom.separator]
-format = "[ :: ]($style)"
+format = "[ ||| ]($style)"
 style = "fg:purple"
 disabled = false

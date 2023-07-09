@@ -11,7 +11,7 @@ let
       sha256 = "sha256-JYw1HyYC7G9/gGa8ne8smWx02z79v7XiVmIDC9BXD48=";
     };
   }; */
-  kakship' = pkgs.rustPlatform.buildRustPackage rec {
+  kakship = pkgs.rustPlatform.buildRustPackage rec {
     pname = "kakship";
     version = "0.2.8";
     src = pkgs.fetchFromGitHub {
@@ -72,14 +72,14 @@ in
       rust-analyzer           # Rust    LSP
       rnix-lsp                # Nix     LSP
 
-      starship
+      kakship
     ];
     programs.kakoune = {
       plugins = with pkgs.kakounePlugins; [
         kak-lsp
         fzf-kak
         kak-rainbow
-        kakship'
+        kakship
 
         kakrc
       ];

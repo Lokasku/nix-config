@@ -16,17 +16,13 @@ hook global WinSetOption filetype=rust %{
 
 # --- kakoune-rainbow
 hook global ModuleLoaded rainbow %{
-  set-option global rainbow_colors rgb:FF0000+db rgb:FF7F00+db rgb:FFFF00+db rgb:00FF00+db rgb:0000FF+db rgb:6A0DAD+db
-  hook global WinSetOption filetype=(rust|python|c|cpp|scheme|lisp|clojure|javascript|json|kak|haskell|python|latex|nix) %{
-    rainbow-enable-window
+    set-option global rainbow_colors rgb:FF0000+db rgb:FF7F00+db rgb:FFFF00+db rgb:00FF00+db rgb:0000FF+db rgb:6A0DAD+db
+    hook global WinSetOption filetype=(rust|python|c|cpp|scheme|lisp|clojure|javascript|json|kak|haskell|python|latex|nix) %{
+        rainbow-enable-window
   }
 }
 
-# --- kakship
-hook global ModuleLoaded kakship %{
-    kakship-enable
-}
-
+# kakship-enable
 
 # --- Map
 map global normal <c-f> ':fzf-mode<ret>v<ret>'
