@@ -1,8 +1,8 @@
-![](./assets/screen1.png)
+![](./screenshot/screen1.png)
 
-![](./assets/screen2.png)
+![](./screenshot/screen2.png)
 
-![](./assets/screen3.png)
+![](./screenshot/screen3.png)
 
 # Installation
 First, add `home-manager` to `configuration.nix` if you haven't already (in `environment.systemPackages`).

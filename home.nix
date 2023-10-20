@@ -37,6 +37,9 @@ with lib;
       gobuster
       openssh
 
+      # Browser
+      brave
+
       # Misc
       (pkgs.callPackage ./config/pragmata.nix {})
       dmenu
