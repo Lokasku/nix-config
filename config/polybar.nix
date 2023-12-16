@@ -35,7 +35,7 @@ with lib;
 
         modules-left = "ewmh";
         modules-center = "title";
-        modules-right = "cpu barsep ram barsep wlan barsep sep battery sep volume sep date sep";
+        modules-right = "cpu barsep ram barsep wlan barsep sep battery sep volume sep time sep";
 
         font-0 = "Pragmata Pro:size=10";
         font-1 = "M+1 Nerd Font:style=Medium:size=11";
@@ -53,13 +53,14 @@ with lib;
         content = "󰿟";
         content-foreground = "\${colors.gray}";
       }; 
-      "module/date" = {
+      "module/time" = {
         type = "internal/date";
         internal = 5;
 
-        date = "%d.%m.%y";
+        # date = "%d.%m.%y";
         time = "%H:%M";
-        label = "%date% %time%";
+        # label = "%date% %time%";
+        label = "%time%";
 
         label-active-font = 1;
       };
@@ -143,10 +144,10 @@ with lib;
         low-at = 20;
         poll-interval = 5;
 
-        # format-discharging = "<ramp-capacity> <label-discharging>";
-        format-discharging = "<ramp-capacity>";
-        # format-full = "<ramp-capacity> <label-full>";
-        format-full = "<ramp-capacity>";
+        format-discharging = "<ramp-capacity> <label-discharging>";
+        # format-discharging = "<ramp-capacity>";
+        format-full = "<ramp-capacity> <label-full>";
+        # format-full = "<ramp-capacity>";
         format-charging = "<label-charging>";
         format-charging-padding = 1;
         format-discharging-padding = format-charging-padding;

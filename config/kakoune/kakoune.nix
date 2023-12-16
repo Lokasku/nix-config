@@ -100,7 +100,10 @@ in
         kak-alacritty
       ];
       config = {
-        numberLines.enable = true;
+        numberLines = {
+            enable = true;
+            # separator = "|";
+        };
         scrollOff = {
           columns = 15;
           lines = 15;

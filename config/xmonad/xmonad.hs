@@ -20,6 +20,7 @@ import XMonad.Layout.Spacing (Border (..), spacingRaw)
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (hPutStrLn, spawnPipe)
+import qualified XMonad.StackSet as SS
 
 myLayoutHook =
   let myGaps = 0
@@ -59,15 +60,19 @@ myTerminal = "alacritty"
 
 myKeys :: XConfig a -> [(String, X ())]
 myKeys c =
-  [ -- M-
+  [ -- C-M-
     ("C-M-<Space>", spawn (terminal c)),
     ("C-M-p", spawn "dmenu_run -fn 'Pragmata Pro:size=10' -nb '#232323' -nf '#C5C5C5' -sb '#2F2F2F' -sf '#FFFFFF' -p 'find:'"),
-    ("C-M-f", spawn "firefox"),
+    ("C-M-w", spawn "brave"),
     ("C-M-k", kill),
     ("C-M-q", spawn "systemctl poweroff"),
     ("C-M-r", spawn "reboot"),
     ("C-M-b", moveUp),
     ("C-M-n", moveDown),
+    ("C-M-s", withFocused $ windows . W.sink),
+    ("C-M-<U>", windows SS.swapUp),
+    ("C-M-<D>", windows SS.swapDown),
+    ("C-M-m", windows SS.swapMaster),
     -- S-
     ("S-<U>", spawn "redshift -P -O 3500"),
     ("S-<D>", spawn "redshift -P -O 6500"),

@@ -18,7 +18,7 @@ with lib;
 
         # Haskell Packages
         haskellPackages.xmonad
-        haskellPackages.xmobar
+        # haskellPackages.xmobar
 
       # Rust
       cargo
@@ -27,7 +27,7 @@ with lib;
       sbcl
 
       # NodeJS
-      nodejs_20
+      # nodejs_20
 
       # Security
       openvpn
@@ -39,21 +39,22 @@ with lib;
 
       # Browser
       brave
+      surf
+
+      # Matrix
+      element-desktop
 
       # Misc
       (pkgs.callPackage ./config/pragmata.nix {})
       dmenu
       neofetch
       brightnessctl # light controler
-      libsForQt5.dolphin
-      unzip
       (nerdfonts.override {
         fonts = ["Iosevka" "MPlus"];
       })
       mplus-outline-fonts.githubRelease
       discord
-      libreoffice
-      nitch
+      qemu
     ];
     
     sessionVariables.EDITOR = "kak";
@@ -66,22 +67,21 @@ with lib;
   fonts.fontconfig.enable = true;
 
   programs = {
-    vscode.enable = true;
-    broot.enable = true;
+    # vscode.enable = true;
+    # broot.enable = true;
     kakoune.enable = true;
     mpv.enable = true;
     home-manager.enable = true;
     alacritty.enable = true;
-    firefox.enable = true;
+    # firefox.enable = true;
     git.enable = true;
     fish.enable = true;
     starship.enable = true;
     feh.enable = true;
-    neovim.enable = true;
+    # neovim.enable = true;
     irssi.enable = true;
     direnv.enable = true;
     zathura.enable = true;
-    rofi.enable = false;
   };
 
   services = {
