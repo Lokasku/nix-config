@@ -17,7 +17,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
-  networking.hostName = "Lukos"; # Define your hostname.
+  networking.hostName = "nixok"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -50,33 +50,24 @@
     layout = "fr";
     xkbVariant = "azerty";
   };
+  
+  # X
   services.xserver.enable = true;
+  # services.xserver.displayManager.startx.enable = true;
+  # services.xserver.displayManager.autoLogin.enable = true;
+  # services.xserver.displayManager.autoLogin.user = "lukasku";
 
   # Configure console keymap
   console.keyMap = "fr";
 
-  # Fish shell
-  programs.fish.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.luke = {
+  users.users.lukasku = {
     isNormalUser = true;
-    description = "Luke";
+    description = "Lukasku";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
     shell = pkgs.fish;
   };
-
-  services.xserver.desktopManager.session = [
-    {
-      name = "home-manager";
-      start = ''
-        ${pkgs.runtimeShell} $HOME/.xsession &
-        waitPID=$!
-      '';
-    }
-  ];
-  services.xserver.displayManager.defaultSession = "home-manager";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -85,18 +76,14 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
-
     ghc cabal-install
-    
     cargo
-
     home-manager
-
     pamixer
-
-    samba
   ];
+
   programs.dconf.enable = true;
+  programs.fish.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -126,29 +113,11 @@
   system.stateVersion = "22.11"; # Did you read the comment?
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
-  
-  /* services.xserver.displayManager.sessionCommands = ''
-    xset -dmps
-    xset s blank
-    xset s 300
-    ${pkgs.lightlocker}/bin/light-locker --idle-hint &
-  '';
 
-  systemd.targets.hybrid-sleep.enable = true;
-  services.logind.extraConfig = ''
-    IdleAction=hybrid-sleep
-    IdleActionSec=20s
-  ''; */
-
-  # Samba
-  services.samba = {
-    securityType = "user";
-    extraConfig = ''
-      guest account = nobody
-      map to guest = bad user
-    '';
-  };
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
   
   # Pipewire
   hardware.pulseaudio.enable = false;
@@ -158,4 +127,16 @@
     pulse.enable = true;
     socketActivation = true;
   };
+
+  # XMonad
+  services.xserver.desktopManager.session = [
+    {
+      name = "home-manager";
+      start = ''
+        ${pkgs.runtimeShell} $HOME/.xsession &
+        waitPID=$!
+      '';
+    }
+  ];
+  services.xserver.displayManager.defaultSession = "home-manager";
 }

@@ -44,6 +44,9 @@ with lib;
       # Matrix
       element-desktop
 
+      # Minecraft
+      minecraft
+
       # Misc
       (pkgs.callPackage ./config/pragmata.nix {})
       dmenu
