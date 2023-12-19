@@ -9,55 +9,28 @@ with lib;
   ];
 
   home = {
-    username = "lukasku";
-    homeDirectory = "/home/lukasku";
+    username = "lokasku";
+    homeDirectory = "/home/lokasku";
     stateVersion = "22.11";
     packages = with pkgs; [
-      # Haskell
-      ghc cabal-install ormolu
+      # Rust   Lisp
+      cargo    sbcl
 
-        # Haskell Packages
-        haskellPackages.xmonad
-        # haskellPackages.xmobar
-
-      # Rust
-      cargo
-
-      # Lisp
-      sbcl
-
-      # NodeJS
-      # nodejs_20
-
-      # Security
-      openvpn
-      nmap
-      inetutils
-      redis
-      gobuster
-      openssh
-
-      # Browser
-      brave
-      surf
-
-      # Matrix
+      #=- Matrix
       element-desktop
 
-      # Minecraft
-      minecraft
-
-      # Misc
+      #=- Font
       (pkgs.callPackage ./config/pragmata.nix {})
-      dmenu
-      neofetch
-      brightnessctl # light controler
       (nerdfonts.override {
         fonts = ["Iosevka" "MPlus"];
       })
       mplus-outline-fonts.githubRelease
-      discord
-      qemu
+
+      #=- Misc
+      dmenu
+      neofetch
+      brightnessctl
+      firefox
     ];
     
     sessionVariables.EDITOR = "kak";
@@ -70,26 +43,21 @@ with lib;
   fonts.fontconfig.enable = true;
 
   programs = {
-    # vscode.enable = true;
-    # broot.enable = true;
     kakoune.enable = true;
     mpv.enable = true;
     home-manager.enable = true;
     alacritty.enable = true;
-    # firefox.enable = true;
+    firefox.enable = true;
     git.enable = true;
     fish.enable = true;
     starship.enable = true;
     feh.enable = true;
-    # neovim.enable = true;
-    irssi.enable = true;
     direnv.enable = true;
-    zathura.enable = true;
   };
 
   services = {
     redshift.enable = true;
-    picom.enable = true;
+    # picom.enable = true;
     flameshot.enable = true;
     polybar.enable = true;
   };

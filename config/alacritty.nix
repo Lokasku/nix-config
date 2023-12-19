@@ -7,7 +7,8 @@ with lib;
       window = {
         dynamic_padding = true;
         decorations = "none";
-        startup_mode = "Maximized";
+        # startup_mode = "Maximized";
+        startup_mode = "Windowed";
         opacity = 0.93;
         title = "Alacritty";
       };
@@ -19,7 +20,7 @@ with lib;
         bold.style = "Bold";
         italic.style = "Italic";
         bold_italic.style = "Bold Italic";
-        size = 7.0;
+        size = 12.0;
         offset = {
           x = 0;
           y = 2;

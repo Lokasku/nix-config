@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./xmonad
+    # ./xmonad
 
-    ./neovim.nix
+    # ./neovim.nix
     ./alacritty.nix
     ./git.nix
     ./fish.nix
@@ -13,9 +13,8 @@
     ./picom.nix
     ./mpv.nix
     ./kakoune/kakoune.nix
-    ./broot.nix
     ./gtk.nix
-    ./vscode.nix
+    # ./vscode.nix
     ./polybar.nix
     ./direnv.nix
   ];
