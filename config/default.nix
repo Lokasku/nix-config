@@ -2,7 +2,7 @@
 
 {
   imports = [
-    # ./xmonad
+    ./xmonad
 
     # ./neovim.nix
     ./alacritty.nix

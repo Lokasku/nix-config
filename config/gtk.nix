@@ -5,8 +5,8 @@ with lib;
   gtk = {
     enable = true;
     theme = {
-      name = "White Sur";
-      package = pkgs.whitesur-gtk-theme;
+      name = "Materia-dark";
+      package = pkgs.materia-theme;
     };
     cursorTheme = {
         package = pkgs.apple-cursor;

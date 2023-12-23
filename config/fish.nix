@@ -4,7 +4,7 @@ with lib; {
   programs.fish = {
     shellAbbrs = {
       en = "cd /etc/nixos";
-      hmc = "cd ~/.config/nixpkgs";
+      hmc = "cd ~/.config/home-manager";
       update = "nix-env -u";
     };
     shellAliases = {

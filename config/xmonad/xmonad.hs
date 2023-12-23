@@ -24,8 +24,8 @@ import qualified XMonad.StackSet as SS
 
 myLayoutHook =
   let myGaps = 0
-   in mkToggle (single FULL) $
-        avoidStruts $
+   in id smartBorders . avoidStruts $
+      mkToggle (single FULL) $
           spacingRaw True (Border 0 myGaps 0 myGaps) True (Border myGaps 0 myGaps 0) True $
             ResizableTall 1 (2 / 100) (1 / 2) []
 
@@ -139,7 +139,7 @@ main = do
             , focusedBorderColor = "#404040"
             , layoutHook = myLayoutHook
             -- , logHook = dynamicLogWithPP $ def {ppOutput = hPutStrLn h}
-            , startupHook = myWallpaper ".config/nixpkgs/wallpapers/wallpaper.jpg"
+            , startupHook = myWallpaper ".config/home-manager/wallpapers/nixflake.png"
             , keys = \c -> mkKeymap c (myKeys c)
             , workspaces = snd <$> myWorkspaces
             , manageHook = myManageHook

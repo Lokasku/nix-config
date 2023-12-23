@@ -6,6 +6,6 @@ with lib;
     enable = true;
     enableContribAndExtras = true;
     config = ./xmonad.hs;
-    haskellPackages = pkgs.haskell.packages.ghc884;
+    haskellPackages = pkgs.haskell.packages.ghc948;
   };
 }

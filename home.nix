@@ -11,13 +11,22 @@ with lib;
   home = {
     username = "lokasku";
     homeDirectory = "/home/lokasku";
-    stateVersion = "22.11";
+    stateVersion = "23.11";
     packages = with pkgs; [
-      # Rust   Lisp
-      cargo    sbcl
+      # Rust   Lisp   Haskell
+      cargo    sbcl   ghc
+                      cabal-install
+
+      #=- XMonad
+      haskellPackages.xmonad
+      haskellPackages.xmobar
 
       #=- Matrix
       element-desktop
+
+      #=- Minecraft
+      jre8
+      prismlauncher-qt5
 
       #=- Font
       (pkgs.callPackage ./config/pragmata.nix {})
@@ -31,6 +40,7 @@ with lib;
       neofetch
       brightnessctl
       firefox
+      nasm
     ];
     
     sessionVariables.EDITOR = "kak";
@@ -57,7 +67,7 @@ with lib;
 
   services = {
     redshift.enable = true;
-    # picom.enable = true;
+    picom.enable = true;
     flameshot.enable = true;
     polybar.enable = true;
   };
