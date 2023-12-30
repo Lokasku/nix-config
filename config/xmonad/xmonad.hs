@@ -62,7 +62,8 @@ myKeys :: XConfig a -> [(String, X ())]
 myKeys c =
   [ -- C-M-
     ("C-M-<Space>", spawn (terminal c)),
-    ("C-M-p", spawn "dmenu_run -fn 'Pragmata Pro:size=10' -nb '#232323' -nf '#C5C5C5' -sb '#2F2F2F' -sf '#FFFFFF' -p 'find:'"),
+    -- ("C-M-p", spawn "dmenu_run -fn 'Pragmata Pro:size=10' -nb '#232323' -nf '#C5C5C5' -sb '#2F2F2F' -sf '#FFFFFF' -p 'find:'"),
+    ("C-M-p", spawn "rofi -show drun"),
     ("C-M-w", spawn "brave"),
     ("C-M-k", kill),
     ("C-M-q", spawn "systemctl poweroff"),
@@ -139,7 +140,7 @@ main = do
             , focusedBorderColor = "#404040"
             , layoutHook = myLayoutHook
             -- , logHook = dynamicLogWithPP $ def {ppOutput = hPutStrLn h}
-            , startupHook = myWallpaper ".config/home-manager/wallpapers/nixflake.png"
+            , startupHook = myWallpaper ".config/home-manager/wallpapers/wallpaper.jpg"
             , keys = \c -> mkKeymap c (myKeys c)
             , workspaces = snd <$> myWorkspaces
             , manageHook = myManageHook

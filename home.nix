@@ -41,6 +41,8 @@ with lib;
       brightnessctl
       firefox
       nasm
+      binutils
+      qemu
     ];
     
     sessionVariables.EDITOR = "kak";
@@ -53,6 +55,8 @@ with lib;
   fonts.fontconfig.enable = true;
 
   programs = {
+    rofi.enable = true;
+    vscode.enable = true;
     kakoune.enable = true;
     mpv.enable = true;
     home-manager.enable = true;

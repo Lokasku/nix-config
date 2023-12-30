@@ -8,6 +8,10 @@ with lib;
       alsaSupport = true;
       pulseSupport = true;
     };
+    extraConfig = ''
+    [bar/top]
+        border-bottom = #343434 2
+    '';
     config = {
       "colors" = {
         white = "aaffffff";

@@ -4,7 +4,6 @@
   imports = [
     ./xmonad
 
-    # ./neovim.nix
     ./alacritty.nix
     ./git.nix
     ./fish.nix
@@ -14,7 +13,7 @@
     ./mpv.nix
     ./kakoune/kakoune.nix
     ./gtk.nix
-    # ./vscode.nix
+    ./rofi.nix
     ./polybar.nix
     ./direnv.nix
   ];
