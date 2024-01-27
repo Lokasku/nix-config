@@ -13,36 +13,37 @@ with lib;
     homeDirectory = "/home/lokasku";
     stateVersion = "23.11";
     packages = with pkgs; [
-      # Rust   Lisp   Haskell
-      cargo    sbcl   ghc
-                      cabal-install
+      # Rust   Haskell
+      cargo    ghc cabal-install
 
       #=- XMonad
       haskellPackages.xmonad
-      haskellPackages.xmobar
+      # haskellPackages.xmobar
 
       #=- Matrix
       element-desktop
 
       #=- Minecraft
-      jre8
+      # jre8
       prismlauncher-qt5
 
       #=- Font
       (pkgs.callPackage ./config/pragmata.nix {})
       (nerdfonts.override {
-        fonts = ["Iosevka" "MPlus"];
+        fonts = ["Iosevka" "MPlus" "Terminus"];
       })
       mplus-outline-fonts.githubRelease
 
       #=- Misc
-      dmenu
+      gcc
+      gnumake
+      yazi
       neofetch
       brightnessctl
-      firefox
       nasm
       binutils
       qemu
+      figma-linux
     ];
     
     sessionVariables.EDITOR = "kak";
@@ -55,13 +56,17 @@ with lib;
   fonts.fontconfig.enable = true;
 
   programs = {
+    zathura.enable = true;
+    zellij.enable = true;
+    emacs.enable = false; # Emacs > *
+    brave.enable = true;
     rofi.enable = true;
-    vscode.enable = true;
+    # vscode.enable = false;
     kakoune.enable = true;
     mpv.enable = true;
     home-manager.enable = true;
     alacritty.enable = true;
-    firefox.enable = true;
+    # firefox.enable = false;
     git.enable = true;
     fish.enable = true;
     starship.enable = true;
@@ -71,7 +76,7 @@ with lib;
 
   services = {
     redshift.enable = true;
-    picom.enable = true;
+    picom.enable = false;
     flameshot.enable = true;
     polybar.enable = true;
   };

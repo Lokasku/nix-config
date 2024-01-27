@@ -15,19 +15,23 @@ with lib;
     config = {
       "colors" = {
         white = "aaffffff";
-        black = "aa1c1c1e";
+        # black = "aa1a1a1c";
+        black = "131313";
         gray = "aa8e8e93";
 
         green4 = "aa31bb4f";
         green3 = "aa38c758";
         green2 = "aa43d565";
         green1 = "aa4ee371";
+        green = "aa57e66d";
 
-        orange = "aaff9500";
+        orange = "aaffcc0a";
         orange1 = "aaff6861";
         orange2 = "aaffb33f";
         orange3 = "aaffd426";
         orange4 = "aa32de4b";
+
+        red = "aaff4136";
       };
       "bar/top" = {
         monitor = "\${env:MONITOR:}";
@@ -165,15 +169,15 @@ with lib;
         # label-warn-foreground = "\${colors.nord11}";
 
         ramp-capacity-0 = "";
-        ramp-capacity-0-foreground = "\${colors.white}";
+        ramp-capacity-0-foreground = "\${colors.red}";
         ramp-capacity-1 = "";
-        ramp-capacity-1-foreground = "\${colors.white}";
+        ramp-capacity-1-foreground = "\${colors.red}";
         ramp-capacity-2 = "";
-        ramp-capacity-2-foreground = "\${colors.white}";
+        ramp-capacity-2-foreground = "\${colors.orange}";
         ramp-capacity-3 = "";
-        ramp-capacity-3-foreground = "\${colors.white}";
+        ramp-capacity-3-foreground = "\${colors.green}";
         ramp-capacity-4 = "";
-        ramp-capacity-4-foreground = "\${colors.white}";
+        ramp-capacity-4-foreground = "\${colors.green}";
       };
       "module/cpu" = rec {
         type = "internal/cpu";

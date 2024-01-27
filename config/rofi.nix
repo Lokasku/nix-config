@@ -8,7 +8,8 @@ with lib;
         theme =
           let
             inherit (config.lib.formats.rasi) mkLiteral;
-            transparent = mkLiteral "rgba (200, 0, 0, 0)";
+            # transparent = mkLiteral "rgba (30, 0, 0, 0)";
+            transparent = mkLiteral "rgb (19, 19, 19)";
             white = mkLiteral "rgb (242, 242, 247)";
             gray0 = mkLiteral "rgb (142, 142, 142)";
             /* gray1 = mkLiteral "rgb (99, 99, 102)";

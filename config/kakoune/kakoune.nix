@@ -80,6 +80,16 @@ let
       sha256 = "sha256-Ibjs6dCU8/XEjUoWNB5a8R4QW7z8w6cFBSxd7UvZrxE=";
     };
   };
+  kakoune-snow = pkgs.kakouneUtils.buildKakounePluginFrom2Nix rec {
+      pname = "kakoune-snow";
+      version = "35f8187";
+      src = pkgs.fetchFromGitHub {
+          owner = "caksoylar";
+          repo = pname;
+          rev = "35f81876bcaea061982396f8071b89528940ae61";
+          sha256 = "";
+      };
+  };
 in
   with lib;
   {
@@ -96,7 +106,6 @@ in
         kak-lsp
         fzf-kak
         kak-rainbow
-        kakship
         kak-alacritty
       ];
       config = {

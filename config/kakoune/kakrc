@@ -4,6 +4,11 @@ eval %sh{ kks init }
 # --- kak-lsp
 eval %sh{kak-lsp --kakoune -s $kak_session}
 
+hook global WinCreate .* %{
+    lsp-inlay-hints-enable window
+    lsp-auto-signature-help-enable
+}
+
 hook global WinSetOption filetype=(nix|haskell) %{
     lsp-enable-window
 }

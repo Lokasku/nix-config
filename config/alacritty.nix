@@ -5,15 +5,21 @@ with lib;
   programs.alacritty = {
     settings = {
       window = {
-        dynamic_padding = true;
         decorations = "none";
         startup_mode = "Maximized";
-        opacity = 0.93;
+        # opacity = 0.93;
+        opacity = 1;
         title = "Alacritty";
+        padding = {
+          x = 6;
+          y = 6;
+        };
+        dynamic_padding = true;
       };
       font = {
         normal = {
           family = "Pragmata Pro";
+          # family = "Terminess Nerd Font";
           style = "Regular";
         };
         bold.style = "Bold";
@@ -31,7 +37,7 @@ with lib;
       };
       colors = {
         primary = {
-          background = "#19191b";
+          background = "#131313";
           foreground = "#f2f2f7";
         };
         bright = {
@@ -58,3 +64,4 @@ with lib;
     };
   };
 }
+
