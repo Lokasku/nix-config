@@ -1,260 +1,180 @@
 { lib, pkgs, ... }:
 
-with lib;
 {
   services.polybar = {
-    script = "polybar top &";
-    package = pkgs.polybar.override {
-      alsaSupport = true;
-      pulseSupport = true;
-    };
-    extraConfig = ''
-    [bar/top]
-        border-bottom = #343434 2
-    '';
-    config = {
-      "colors" = {
-        white = "aaffffff";
-        # black = "aa1a1a1c";
-        black = "131313";
-        gray = "aa8e8e93";
-
-        green4 = "aa31bb4f";
-        green3 = "aa38c758";
-        green2 = "aa43d565";
-        green1 = "aa4ee371";
-        green = "aa57e66d";
-
-        orange = "aaffcc0a";
-        orange1 = "aaff6861";
-        orange2 = "aaffb33f";
-        orange3 = "aaffd426";
-        orange4 = "aa32de4b";
-
-        red = "aaff4136";
+      script = "polybar -q a &";
+      package = pkgs.polybar.override {
+          alsaSupport = true;
+          pulseSupport = true;
       };
-      "bar/top" = {
-        monitor = "\${env:MONITOR:}";
+      extraConfig = "";
+      config = {
+          /* "global/wm" = {
+              margin-bottom = "0";
+          }; */
+          "colors" = {
+              white = "aaffffff";
+              gray = "aac5c5c5";
 
-        width = "100%";
-        height = "31";
+              verygreen = "aa4fea67";
+              green = "aa57e66d";
+              orange = "aaffcc0a";
+              red = "aaff4136";
+          };
+          "settings" = {
+              # pseudo-transparency = "true";
+          };
+          "bar/a" = {
+              monitor = "\${env:MONITOR:}";
 
-        radius = 0;
+              width = "100%";
+              height = "30";
 
-        modules-left = "ewmh";
-        modules-center = "title";
-        modules-right = "cpu barsep ram barsep wlan barsep sep battery sep volume sep time sep";
+              fixed-center = "true";
+              background = "191919";
+              foreground = "aaffffff";
+              border-color = "aa656565";
+              padding = "1";
+              wm-name = "polybar";
 
-        font-0 = "Pragmata Pro:size=10";
-        font-1 = "M+1 Nerd Font:style=Medium:size=11";
+              module-margin = "2";
+              modules-right = "network keyboard battery volume time";
+              modules-center = "";
+              modules-left = "ewmh";
 
-        background = "\${colors.black}";
-        foreground = "\${colors.white}";
-      };
-      "module/sep" = {
-        type = "custom/text";
-        content = " ";
-        # content-font = 1;
-      };
-      "module/barsep" = {
-        type = "custom/text";
-        content = "󰿟";
-        content-foreground = "\${colors.gray}";
-      }; 
-      "module/time" = {
-        type = "internal/date";
-        internal = 5;
+              font-0 = "Pragmata Pro:size=11;2"; # Text
+              font-1 = "M+1 Nerd Font:style=Medium:size=12;2";
+              # font-1 = "Pragmata Pro:size=11;2"; # EWMH
+              # font-2 = "Pragmata Pro:size=11;2"; # Battery
+          };
+          "module/time" = {
+              type = "internal/date";
+              time = "%H:%M";
+              label = "%time%";
+          };
+          "module/title" = {
+              type = "internal/xwindow";
+              format = "<label>";
+              label = "%title%";
+          };
+          "module/volume" = {
+            type = "internal/pulseaudio";
 
-        # date = "%d.%m.%y";
-        time = "%H:%M";
-        # label = "%date% %time%";
-        label = "%time%";
+            format-volume = "<ramp-volume><label-volume>";
+            format-muted = "<label-muted>";
 
-        label-active-font = 1;
-      };
-      "module/title" = {
-        type = "internal/xwindow";
+            ramp-volume-padding-right = 2;
 
-        format = "<label>";
-        format-foreground = "\${colors.white}";
+            label-muted = "";
+            label-muted-foreground = "\${colors.gray}";
 
-        label = "%title%";
-        label-empty = "";
-      };
-      "module/volume" = {
-        type = "internal/pulseaudio";
+            label-volume = "%percentage:3:3%%";
+            label-volume-foreground = "\${colors.white}";
 
-        use-ui-max = false;
+            # ramp-volume-font = 2;
+            ramp-volume-0 = "";
+            ramp-volume-0-foreground = "\${colors.white}";
 
-        interval = 4;
+            ramp-volume-1 = "";
+            ramp-volume-1-foreground = "\${colors.white}";
 
-        format-volume = "<ramp-volume><label-volume>";
-        format-muted = "<label-muted>";
-        format-volume-padding = 1;
-        format-muted-padding = 1;
+            ramp-volume-2 = "";
+            ramp-volume-2-foreground = "\${colors.white}";
+          }; 
+          "module/ewmh" = rec {
+            type = "internal/xworkspaces";
 
-        label-muted = "";
-        label-muted-foreground = "\${colors.white}";
-
-        label-volume = "%percentage:3:3%%";
-        label-volume-foreground = "\${colors.white}";
-
-        ramp-volume-0 = "";
-        ramp-volume-0-foreground = "\${colors.white}";
-
-        ramp-volume-1 = "";
-        ramp-volume-1-foreground = "\${colors.white}";
-
-        ramp-volume-2 = "";
-        ramp-volume-2-foreground = "\${colors.white}";
-
-        label-volume-0-foreground = "\${colors.white}";
-      }; 
-      "module/ewmh" = rec {
-        type = "internal/xworkspaces";
-
-        pin-workspaces = false;
-    
-        enable-click = false;
-        enable-scroll = false;
+            pin-workspaces = false;
         
-        format = " <label-state>";
-        format-foreground = "\${colors.gray}";
-        format-padding = 1;
-        # format-font = 3;
+            enable-click = false;
+            enable-scroll = false;
+            
+            format = "<label-state>";
+            format-foreground = "\${colors.gray}";
+            format-padding = 1;
+            # format-font = 2;
 
-        label-active = "%icon% ";
-        label-active-foreground = "\${colors.white}";
-        label-active-padding = 1;
+            padd = 4;
+            label-font = 3;
 
-        label-occupied = label-active;
-        label-occupied-padding = label-active-padding;
-        label-occupied-foreground = "\${colors.gray}";
-    
-        label-urgent = label-active;
-        label-urgent-foreground = "#aa1c1c1e";
-        label-urgent-padding = label-active-padding;
+            label-active = "%icon%";
+            label-active-foreground = "\${colors.white}";
+            label-active-padding-right = padd;
+
+            label-occupied = "%icon%";
+            label-occupied-padding-right = padd;
+            label-occupied-foreground = "\${colors.gray}";
         
-        label-empty = label-active;
-        label-empty-foreground = "\${colors.gray}";
-        label-empty-padding = label-active-padding;
+            label-empty = "%icon%";
+            label-empty-foreground = "\${colors.gray}";
+            label-empty-padding-right = padd;
 
-        icon-0 = "music;·";
-        icon-1 = "dev;";
-        icon-2 = "www;·";
-        icon-3 = "work;·";
-        icon-default = "·";
+            icon-0 = "music;·";
+            icon-1 = "dev;";
+            icon-2 = "www;·";
+            icon-3 = "work;·";
+            icon-default = "·";
+          };
+          "module/battery" = rec {
+            type = "internal/battery";
+
+            full-at = 99;
+            low-at = 20;
+            poll-interval = 5;
+
+            format-discharging = "<ramp-capacity><label-discharging>";
+
+            format-full = "<ramp-capacity>";
+            format-full-foreground = "\${colors.verygreen}";
+
+            format-charging = "<ramp-capacity><label-charging>";
+
+            format-padding = 1;
+            
+            label-charging = " %percentage:3:3%%";
+            label-discharging = "%percentage:3:3%%";
+
+            ramp-capacity-padding-right = 1;
+            # ramp-capacity-font = 3;
+            ramp-capacity-0 = "";
+            ramp-capacity-0-foreground = "\${colors.red}";
+            ramp-capacity-1 = "";
+            ramp-capacity-1-foreground = "\${colors.red}";
+            ramp-capacity-2 = "";
+            ramp-capacity-2-foreground = "\${colors.orange}";
+            ramp-capacity-3 = "";
+            ramp-capacity-3-foreground = "\${colors.green}";
+            ramp-capacity-4 = "";
+            ramp-capacity-4-foreground = "\${colors.green}";
+          };
+          "module/keyboard" = {
+              type = "internal/xkeyboard";
+
+              label-layout = "%icon%";
+              layout-icon-0 = "fr;FR";
+              layout-icon-1 = "us;US";
+
+              label-indicator-on-capslock = "";
+              label-indicator-on-numlocl = "";
+              label-indicator-on-scrolllock = "";
+          };
+          "module/network" = {
+              type = "internal/network";
+
+              interface = "\${env:WIFI_IF:}";
+              interface-type = "wireless";
+
+              format-connected = "<label-connected>";
+              format-disconnected = "<label-disconnected>";
+              format-packetloss = "<label-packetloss>";
+
+              label-connected = "󱚽";
+              label-connected-foreground = "\${colors.white}";
+              label-disconnected = "󰖪";
+              label-disconnected-foreground = "\${colors.white}";
+              label-packetloss = "󱚵";
+              label-packetloss-foreground = "\${colors.white}";
+          };
       };
-      "module/battery" = rec {
-        type = "internal/battery";
-
-        full-at = 100;
-        low-at = 20;
-        poll-interval = 5;
-
-        format-discharging = "<ramp-capacity> <label-discharging>";
-        # format-discharging = "<ramp-capacity>";
-        format-full = "<ramp-capacity> <label-full>";
-        # format-full = "<ramp-capacity>";
-        format-charging = "<label-charging>";
-        format-charging-padding = 1;
-        format-discharging-padding = format-charging-padding;
-        format-full-padding = format-charging-padding;
-        
-        label-charging = "󱐋 %percentage:3:3%%";
-        # label-charging-foreground = "\${colors.nord15}";
-        label-discharging = "%percentage:3:3%%";
-        label-full = "100%";
-        label-warn = label-discharging;
-        # label-warn-foreground = "\${colors.nord11}";
-
-        ramp-capacity-0 = "";
-        ramp-capacity-0-foreground = "\${colors.red}";
-        ramp-capacity-1 = "";
-        ramp-capacity-1-foreground = "\${colors.red}";
-        ramp-capacity-2 = "";
-        ramp-capacity-2-foreground = "\${colors.orange}";
-        ramp-capacity-3 = "";
-        ramp-capacity-3-foreground = "\${colors.green}";
-        ramp-capacity-4 = "";
-        ramp-capacity-4-foreground = "\${colors.green}";
-      };
-      "module/cpu" = rec {
-        type = "internal/cpu";
-        
-        interval = 1;
-        
-        # format = "  <ramp-coreload> <label>";
-        format = "<label>";
-        format-padding = 1;
-    
-        label = "%percentage:3:3%%";
-        label-foreground = "\${colors.nord5}";
-
-        ramp-coreload-spacing = 0;
-        ramp-coreload-0 = "▁";
-        ramp-coreload-0-foreground = "\${colors.orange4}";
-        ramp-coreload-1 = "▂";
-        ramp-coreload-1-foreground = ramp-coreload-0-foreground;
-        ramp-coreload-2 = "▃";
-        ramp-coreload-2-foreground = "\${colors.orange3}";
-        ramp-coreload-3 = "▄";
-        ramp-coreload-3-foreground = ramp-coreload-2-foreground;
-        ramp-coreload-4 = "▅";
-        ramp-coreload-4-foreground = "\${colors.orange2}";
-        ramp-coreload-5 = "▆";
-        ramp-coreload-5-foreground = ramp-coreload-4-foreground;
-        ramp-coreload-6 = "▇";
-        ramp-coreload-6-foreground = "\${colors.orange1}";
-        ramp-coreload-7 = "█";
-        ramp-coreload-7-foreground = ramp-coreload-6-foreground;
-      };
-      "module/ram" = rec {
-        type = "internal/memory";
-        
-        interval = "0.5";
-        
-        # format = "󰍛 <bar-used> <label>";
-        format = "<label>";
-        format-padding = 1;
-        
-        label = "%percentage_used:3:3%%";
-        label-foreground = "\${colors.white}";
-        label-warn = label;
-        label-warn-foreground = "\${colors.orange}";
-
-        bar-used-indicator = "";
-        bar-used-width = 10;
-        bar-used-foreground-0 = "\${colors.green4}";
-        bar-used-foreground-1 = "\${colors.green3}";
-        bar-used-foreground-2 = "\${colors.green2}";
-        bar-used-foreground-3 = "\${colors.green1}";
-        bar-used-fill = "▐";
-        bar-used-empty = "▐";
-        bar-used-empty-foreground = "\${colors.gray}";
-      };
-      "module/wlan" = rec {
-        type = "internal/network";
-
-        interface = "\${env:WIFI_IF:}";
-        interface-type = "wireless";
-
-        interval = 5;
-
-        format-connected = "<label-connected>";
-        format-connected-padding = 1;
-        format-disconnected = "<label-disconnected>";
-        format-disconnected-padding = format-connected-padding;
-        format-packetloss = "<label-packetloss>";
-        format-packetloss-padding = format-connected-padding;
-        
-        label-connected = "󱚽";
-        label-connected-foreground = "\${colors.nord14}";
-        label-disconnected = "󰖪";
-        label-disconnected-foreground = "\${colors.nord3}";
-        label-packetloss = "󱚵";
-        label-packetloss-foreground = "\${colors.nord11}";
-      };
-    };
   };
 }

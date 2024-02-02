@@ -16,6 +16,6 @@
     ./rofi.nix
     ./polybar.nix
     ./direnv.nix
-    ./doom/doom.nix
+    ./emacs/emacs.nix
   ];
 }

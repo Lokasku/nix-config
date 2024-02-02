@@ -1,0 +1,48 @@
+;; Envrc
+(envrc-global-mode)
+
+;; Dired Sidebar
+(setq dired-sidebar-theme 'icons)
+(use-package dired-sidebar
+  :bind (("C-x C-n" . dired-sidebar-toggle-sidebar))
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar)
+  :init
+  (add-hook 'dired-sidebar-mode-hook
+            (lambda ()
+              (unless (file-remote-p default-directory)
+                (auto-revert-mode))))
+  :config
+  (push 'toggle-window-split dired-sidebar-toggle-hidden-commands)
+  (push 'rotate-windows dired-sidebar-toggle-hidden-commands)
+
+  (setq dired-sidebar-subtree-line-prefix "__")
+  (setq dired-sidebar-theme 'icons)
+  (setq dired-sidebar-use-term-integration t)
+  (setq dired-sidebar-use-custom-font t))
+
+;; Icons
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+
+;; Projectile
+;; (require 'projectile)
+;; (projectile-global-mode)
+
+;; Display
+(menu-bar-mode -1)
+(toggle-scroll-bar -1)
+(tool-bar-mode -1)
+(setq inhibit-splash-screen t)
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message ";; Happy hacking.")
+
+;; Rust
+(add-hook 'rust-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)
+	    (prettify-symbols-mode)))
+(add-hook 'rust-mode-hook 'eglot-ensure)
+(setq rust-format-on-save t)
+
+;; Nix
+(add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))

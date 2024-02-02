@@ -56,17 +56,15 @@ with lib;
   fonts.fontconfig.enable = true;
 
   programs = {
+    emacs.enable = true;
     zathura.enable = true;
     zellij.enable = true;
-    emacs.enable = false; # Emacs > *
     brave.enable = true;
     rofi.enable = true;
-    # vscode.enable = false;
     kakoune.enable = true;
     mpv.enable = true;
     home-manager.enable = true;
     alacritty.enable = true;
-    # firefox.enable = false;
     git.enable = true;
     fish.enable = true;
     starship.enable = true;

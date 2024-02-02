@@ -127,7 +127,7 @@ myWallpaper w = do
   spawn $ "feh --bg-fill " ++ homeDir ++ "/" ++ w
 
 myColoredWallpaper :: X ()
-myColoredWallpaper = spawn "xsetroot -solid \"#131313\""
+myColoredWallpaper = spawn "xsetroot -solid \"#191919\""
 
 main = do
   -- h <- spawnPipe "xmobar ~/.config/nixpkgs/config/xmonad/xmobar.hs"
@@ -143,7 +143,7 @@ main = do
             , focusedBorderColor = "#212121"
             , layoutHook = myLayoutHook
             -- , logHook = dynamicLogWithPP $ def {ppOutput = hPutStrLn h}
-            -- , startupHook = myWallpaper ".config/home-manager/wallpapers/nixflake.png"
+            --, startupHook = myWallpaper ".config/home-manager/wallpapers/nixflake.png"
             , startupHook = myColoredWallpaper
             , keys = \c -> mkKeymap c (myKeys c)
             , workspaces = snd <$> myWorkspaces

@@ -37,7 +37,7 @@ with lib;
       };
       colors = {
         primary = {
-          background = "#131313";
+          background = "#191919";
           foreground = "#f2f2f7";
         };
         bright = {

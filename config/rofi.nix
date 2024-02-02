@@ -4,12 +4,12 @@ with lib;
 {
     programs.rofi = {
         font = "Pragmata Pro";
-        location = "center";
+        location = "top";
         theme =
           let
             inherit (config.lib.formats.rasi) mkLiteral;
-            # transparent = mkLiteral "rgba (30, 0, 0, 0)";
-            transparent = mkLiteral "rgb (19, 19, 19)";
+            transparent = mkLiteral "rgb (41, 41, 41)";
+            # transparent = mkLiteral "rgb (19, 19, 19)";
             white = mkLiteral "rgb (242, 242, 247)";
             gray0 = mkLiteral "rgb (142, 142, 142)";
             /* gray1 = mkLiteral "rgb (99, 99, 102)";
@@ -33,7 +33,7 @@ with lib;
                 enabled = false;
             };
             "#window" = {
-                border-radius = mkLiteral "5px";
+                # border-radius = mkLiteral "5px";
                 padding = mkLiteral "5px 10px";
                 border = mkLiteral "1px";
             };
