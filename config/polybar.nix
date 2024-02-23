@@ -33,7 +33,8 @@
               fixed-center = "true";
               background = "191919";
               foreground = "aaffffff";
-              border-color = "aa656565";
+              border-color = "242424";
+              border-bottom-size = 1;
               padding = "1";
               wm-name = "polybar";
 
@@ -42,8 +43,8 @@
               modules-center = "";
               modules-left = "ewmh";
 
-              font-0 = "Pragmata Pro:size=11;2"; # Text
-              font-1 = "M+1 Nerd Font:style=Medium:size=12;2";
+              font-0 = "PragmataPro Liga:size=12;2"; # Text
+              font-1 = "M+1 Nerd Font:style=Medium:size=11;2";
               # font-1 = "Pragmata Pro:size=11;2"; # EWMH
               # font-2 = "Pragmata Pro:size=11;2"; # Battery
           };
@@ -135,7 +136,7 @@
             label-discharging = "%percentage:3:3%%";
 
             ramp-capacity-padding-right = 1;
-            # ramp-capacity-font = 3;
+            ramp-capacity-font = 2;
             ramp-capacity-0 = "";
             ramp-capacity-0-foreground = "\${colors.red}";
             ramp-capacity-1 = "";

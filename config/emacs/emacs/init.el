@@ -2,11 +2,18 @@
 (envrc-global-mode)
 
 ;; Icons
-(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+(setq inhibit-compacting-font-caches t)
 
 ;; Projectile
-(projectile-global-mode)
+(projectile-mode +1)
 (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
+;; Ivy
+(ivy-mode 1)
+(counsel-mode 1)
+(setq enable-recursive-minibuffers t)
+(setq ivy-count-format "(%d/%d) ")
+(setq ivy-use-virtual-buffers t)
 
 ;; Display
 (menu-bar-mode -1)
@@ -19,10 +26,15 @@
 ;; Rust
 (add-hook 'rust-mode-hook
 	  (lambda ()
-	    (setq indent-tabs-mode nil)
-	    (prettify-symbols-mode)))
+	    (setq indent-tabs-mode nil)))
 (add-hook 'rust-mode-hook 'eglot-ensure)
 (setq rust-format-on-save t)
 
 ;; Nix
 (add-to-list 'auto-mode-alist '("\\.nix\\'" . nix-mode))
+
+;; GENERAL
+(set-face-attribute 'default nil :font "Pragmata Pro Mono-11")
+(global-linum-mode 1)
+(global-set-key (kbd "C-c f") 'counsel-file-jump)
+(global-set-key (kbd "C-c b") 'counsel-down-directory)

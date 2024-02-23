@@ -12,7 +12,7 @@ with lib; {
       b = "branch";
     };
     userEmail = "lukasku@proton.me";
-    userName = "Loqasku";
+    userName = "Lokasku";
     delta.enable = true;
     ignores = [ "*.swp" ];
   };

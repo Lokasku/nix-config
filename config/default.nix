@@ -17,5 +17,7 @@
     ./polybar.nix
     ./direnv.nix
     ./emacs/emacs.nix
+    ./vscode.nix
+    ./zellij.nix
   ];
 }

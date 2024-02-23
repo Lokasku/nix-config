@@ -7,8 +7,8 @@ with lib;
       window = {
         decorations = "none";
         startup_mode = "Maximized";
-        # opacity = 0.93;
-        opacity = 1;
+        opacity = 0.93;
+        # opacity = 1;
         title = "Alacritty";
         padding = {
           x = 6;
@@ -18,7 +18,7 @@ with lib;
       };
       font = {
         normal = {
-          family = "Pragmata Pro";
+          family = "PragmataPro Liga";
           # family = "Terminess Nerd Font";
           style = "Regular";
         };
@@ -28,16 +28,16 @@ with lib;
         size = 7.0;
         offset = {
           x = 0;
-          y = 2;
+          y = -1;
         };
         glyph_offset = {
           x = 0;
-          y = 2;
+          y = -1;
         };
       };
       colors = {
         primary = {
-          background = "#191919";
+          background = "#151515";
           foreground = "#f2f2f7";
         };
         bright = {

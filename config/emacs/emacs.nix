@@ -7,8 +7,13 @@
         epkgs.eglot
         epkgs.envrc
         epkgs.projectile
-        epkgs.dired-sidebar
+        # epkgs.dired-sidebar
+
+        epkgs.all-the-icons
         epkgs.all-the-icons-dired
+
+        epkgs.ivy
+        epkgs.counsel
     ];
 
     home.file.".emacs.d" = {

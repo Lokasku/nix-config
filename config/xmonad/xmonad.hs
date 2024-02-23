@@ -74,6 +74,7 @@ myKeys c =
     ("C-M-<U>", windows SS.swapUp),
     ("C-M-<D>", windows SS.swapDown),
     ("C-M-m", windows SS.swapMaster),
+    ("C-M-e", spawn "emacs"),
     -- S-
     ("S-<U>", spawn "redshift -P -O 3500"),
     ("S-<D>", spawn "redshift -P -O 6500"),
@@ -138,12 +139,11 @@ main = do
           def
             { borderWidth = 1
             , terminal = myTerminal
-            , normalBorderColor = "#1e1e1e"
-            -- , focusedBorderColor = "#566063"
-            , focusedBorderColor = "#212121"
+            , normalBorderColor = "#171717"
+            , focusedBorderColor = "#202020"
             , layoutHook = myLayoutHook
             -- , logHook = dynamicLogWithPP $ def {ppOutput = hPutStrLn h}
-            --, startupHook = myWallpaper ".config/home-manager/wallpapers/nixflake.png"
+            -- , startupHook = myWallpaper ".config/home-manager/wallpapers/rog.jpg"
             , startupHook = myColoredWallpaper
             , keys = \c -> mkKeymap c (myKeys c)
             , workspaces = snd <$> myWorkspaces

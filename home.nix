@@ -30,20 +30,22 @@ with lib;
       #=- Font
       (pkgs.callPackage ./config/pragmata.nix {})
       (nerdfonts.override {
-        fonts = ["Iosevka" "MPlus" "Terminus"];
+        fonts = ["Iosevka" "MPlus"];
       })
       mplus-outline-fonts.githubRelease
+
+      #=- Clojure
+      clojure
+      leiningen
 
       #=- Misc
       gcc
       gnumake
-      yazi
       neofetch
       brightnessctl
       nasm
       binutils
       qemu
-      figma-linux
     ];
     
     sessionVariables.EDITOR = "kak";
@@ -56,7 +58,8 @@ with lib;
   fonts.fontconfig.enable = true;
 
   programs = {
-    emacs.enable = true;
+    emacs.enable = false;
+    vscode.enable = true;
     zathura.enable = true;
     zellij.enable = true;
     brave.enable = true;
